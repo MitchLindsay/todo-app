@@ -1,25 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { TodoItems } from "./components/TodoItems";
+import { AddNewItem } from "./components/AddNewItem";
+
+const initialState = {
+  items: ["item 1", "item 2", "item 3"]
+};
 
 class App extends Component {
+  state = initialState;
+
+  handleButtonClick = newItem => {
+    this.setState({ items: [...this.state.items, newItem] });
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <TodoItems items={this.state.items} title="TODO App" />
+        <AddNewItem
+          handleButtonClick={this.handleButtonClick}
+          value={this.state.value}
+        />
       </div>
     );
   }
