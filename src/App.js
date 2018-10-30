@@ -15,13 +15,9 @@ class App extends Component {
 
   handleRemoveClick = () => {
     let items = [];
-    this.state.items.forEach((item, index) => {
-      items = this.state.items.filter(obj => obj[1] === false);
-    });
+    items = this.state.items.filter(obj => obj[1] === false);
 
-    this.setState({
-      items
-    });
+    this.setState({ items });
   };
 
   onCheckboxClick = item => () => {
