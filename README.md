@@ -1,6 +1,6 @@
 # TODO App
 
-## Future Features
+## Features
 
 - Sorting
 - Remove an item
