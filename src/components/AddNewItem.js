@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Button } from "./Button";
 
 const initialState = {
   isError: false,
@@ -12,10 +13,14 @@ export class AddNewItem extends React.Component {
     const isValid = this.state.value && this.state.value.trim();
 
     if (isValid) {
-      this.props.handleButtonClick(this.state.value);
+      this.props.handleButtonClick([this.state.value, false]);
     }
 
     this.setState({ isError: !isValid, value: "" });
+  };
+
+  removeButtonClick = () => {
+    this.props.removeButtonClick();
   };
 
   handleInputChange = e => {
@@ -30,7 +35,10 @@ export class AddNewItem extends React.Component {
           type="text"
           value={this.state.value}
         />
-        <button onClick={this.handleButtonClick}>Add</button>
+        <Button label="Add" handleButtonClick={this.handleButtonClick} />
+        {this.props.isRemoveVisible && (
+          <Button label="Remove" handleButtonClick={this.removeButtonClick} />
+        )}
         {this.state.isError && <p>Please enter a value.</p>}
       </div>
     );
